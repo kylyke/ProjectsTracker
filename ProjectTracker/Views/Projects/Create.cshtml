@@ -1,0 +1,88 @@
+﻿@model ProjectTracker.Database.Concrete.Project
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Firma</h1>
+
+<h4>Yeni Firma</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label><a scope="col">Firma Adı</a></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Başlangıç Tarihi</a></label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">İlgili</a></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Firma İlgili</a></label>
+                <input asp-for="CompanyAbout" class="form-control" />
+                <span asp-validation-for="CompanyAbout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Telefon Numarası</a></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Bağlantı Adresi</a></label>
+                <input asp-for="ConnectionAdress" class="form-control" />
+                <span asp-validation-for="ConnectionAdress" class="text-danger"></span>
+            </div>
+            <div class="form-control-plaintext">
+                <div class="form-group">
+                    @Html.DisplayName("Bakım Anlaşması")
+                    @Html.CheckBox("MaintenanceAgreement")
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Bakım Anlaşması Başlangıç Tarihi</a></label>
+                <input asp-for="MaintenanceAgreementStartDate" class="form-control" />
+                <span asp-validation-for="MaintenanceAgreementStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Bakım Anlaşması Bitiş Tarihi</a></label>
+                <input asp-for="MaintenanceAgreementFinishDate" class="form-control" />
+                <span asp-validation-for="MaintenanceAgreementFinishDate" class="text-danger"></span>
+            </div>
+            <div class="form-control-plaintext">
+                <div class="form-group">
+                    @Html.DisplayName("Güncelleme Anlaşması")
+                    @Html.CheckBox("UpdateAgreement")
+                </div>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Güncelleme Anlaşması Başlangıç Tarihi</a></label>
+                <input asp-for="UpdateAgreementStartDate" class="form-control" />
+                <span asp-validation-for="UpdateAgreementStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Güncelleme Anlaşması Bitiş Tarihi</a></label>
+                <input asp-for="UpdateAgreementFinisDate" class="form-control" />
+                <span asp-validation-for="UpdateAgreementFinisDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-outline-primary" />
+                <a class="btn btn-outline-secondary" asp-action="Index">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

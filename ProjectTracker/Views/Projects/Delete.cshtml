@@ -1,0 +1,98 @@
+﻿@model ProjectTracker.Database.Concrete.Project
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Proje</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a scope="col">Firma Adı</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Başlangıç Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Güncelleme Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UpdateDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Bitiş Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FinishDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Firma İlgili</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CompanyAbout)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">İlgili</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Telefon Numarası</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Bakım Anlaşması</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaintenanceAgreement)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Bakım Anlaşması Başlangıç Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaintenanceAgreementStartDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Bakım Anlaşması Bitiş Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MaintenanceAgreementFinishDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Güncelleme Anlaşması</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UpdateAgreement)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Güncelleme Anlaşması Başlangıç Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UpdateAgreementStartDate)
+        </dd>
+        <dt class="col-sm-2">
+            <a scope="col">Güncelleme Anlaşması Bitiş Tarihi</a>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UpdateAgreementFinisDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Projeyi Sil" class="btn btn-outline-danger" /> |
+        <a asp-action="Index" class="btn btn-outline-secondary">Listeye Geri Dön</a>
+    </form>
+</div>

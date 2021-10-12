@@ -1,0 +1,43 @@
+﻿@model ProjectTracker.Database.Concrete.Note
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Notlar</h1>
+
+<h4>Düzlenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger">Not</div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="DemandNote" class="control-label"></label>
+                <input asp-for="DemandNote" class="form-control" />
+                <span asp-validation-for="DemandNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreateDate" class="control-label">Tarih</label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DemandId" class="control-label">Talep Id</label>
+                <input asp-for="DemandId" class="form-control" />
+                <span asp-validation-for="DemandId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+                <button class="btn btn-secondary" @Url.Action("Index","Demands")>Geri Dön</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

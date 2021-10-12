@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjectTracker.Database.Concrete.Note>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Header{
+}
+<h1>Notlar</h1>
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+</p>
+<table table id="mytable" class="table table-bordered table-striped" style="display: none" ;>
+    <thead>
+        <tr>
+
+            <th scope="col">Talep Notu</th>
+
+
+            <th scope="col">Not Tarihi</th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td title="@Html.DisplayFor(modelItem => item.DemandNote)">
+                    @Html.DisplayFor(modelItem => item.DemandNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                    @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/js/jquery.dataTables.min.js"></script>
+
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+            $('#mytable').show();
+        });
+
+    </script>
+
+}

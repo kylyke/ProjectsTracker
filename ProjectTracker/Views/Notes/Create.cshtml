@@ -1,0 +1,39 @@
+﻿@model ProjectTracker.Database.Concrete.Note
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Notlar</h1>
+
+<h4>Oluştur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DemandNote" class="control-label">Talep Notu</label>
+                <input asp-for="DemandNote" class="form-control" />
+                <span asp-validation-for="DemandNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="CreateDate" class="form-control" style="display:none" />
+            </div>
+            <div class="form-group">
+                <input asp-for="DemandId" class="form-control" value="@Model.DemandId" style="display:none"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="/demands/index/">Geri Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

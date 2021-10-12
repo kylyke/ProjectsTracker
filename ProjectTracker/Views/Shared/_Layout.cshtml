@@ -1,0 +1,170 @@
+﻿
+@using Microsoft.AspNetCore.Http;
+@{
+
+    string fullname = Context.Session.GetString("fullname2");
+    string Role = Context.Session.GetString("Role");
+}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>TrBarkod Panel</title>
+    <link href="/web/dist/css/styles.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    @RenderSection("Header", required: false)
+
+    <nav style=" top:0px; left:0px; right:0px;" class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, Times, serif;" class="navbar-brand" href="/Home/index">TrBarkod</a><button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button><!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+        </form>
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" , @Html.ActionLink("Çıkış Yap", "Logout", "Login")</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="/home/index">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        @if (Role == "Admin")
+                        {
+                            <div class="sb-sidenav-menu-heading">Tanımlar</div>
+                            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts2" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Tanımlar
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/users/index">Kullanıcılar</a><a class="nav-link" href="/projects/index">Firmalar</a></nav>
+                            </div>
+                        }
+
+
+                        <div class="sb-sidenav-menu-heading">İşlemler</div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Firma İşlemleri
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/demands/index">Talepler</a><a class="nav-link" href="/supports/index">Destekler</a></nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            İş Listesi
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                                    Talepler
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="/demands/index2">Onay Bekleyenler</a><a class="nav-link" href="/demands/TalepRed">Reddedilerler</a><a class="nav-link" href="/demands/TalepTamamlanan">Tamamlananlar</a></nav>
+                                </div>
+                                @*<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                        Diğer
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>*@
+                                @*<div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav"><a class="nav-link" href="401.html">401 Page</a><a class="nav-link" href="404.html">404 Page</a><a class="nav-link" href="500.html">500 Page</a></nav>
+                                    </div>*@
+                            </nav>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Giriş Yapan :       @fullname</div>
+                    <span id="UserName"></span>
+                </div>
+            </nav>
+        </div>
+
+
+        <div id="layoutSidenav_content">
+            <div class="container-fluid">
+                <br />
+                @RenderBody()
+                <br />
+                <br />
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Web/src/js/scripts.js"></script>
+</body>
+</html>
+@RenderSection("Scripts", required: false)
+<script>
+    var UserName = localStorage.getItem("UserName");
+    $("#UserName").html(UserName);
+</script>
+<!DOCTYPE html>
+
+
+<a href="#" class="yukarikaydir">Yukarı kaydır</a>
+
+<style>
+
+
+    .yukarikaydir {
+        display: none;
+        background-color: cornflowerblue;
+        padding: 10px;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        text-decoration: none;
+        color: #000;
+        border-radius: 10px;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.yukarikaydir').fadeIn();
+            } else {
+                $('.yukarikaydir').fadeOut();
+            }
+        });
+
+        $('.yukarikaydir').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+    });
+</script>
+

@@ -1,0 +1,45 @@
+﻿@model ProjectTracker.Database.Concrete.Support
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <h4>Destek</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Firma")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Project.ProjectName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Sorun")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Demander)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Yapılan İşlem")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Execution)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("İlgili")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Name)
+        </dd class>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Sil" class="btn btn-outline-danger" /> |
+        <a class="btn btn-outline-primary" asp-action="Index">Geri Dön</a>
+    </form>
+</div>

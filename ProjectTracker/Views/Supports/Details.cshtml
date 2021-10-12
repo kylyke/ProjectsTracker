@@ -1,0 +1,42 @@
+﻿@model ProjectTracker.Database.Concrete.Support
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Destek</h1>
+
+<div>
+    <h4>Detaylar</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Firma")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Project.ProjectName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Sorun")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Demander)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Yapılan İşlem")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Execution)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("İlgili")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.User.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@Model.Id">Düzenle</a>
+    <a class="btn btn-outline-secondary" asp-action="Index">Geri Dön</a>
+</div>

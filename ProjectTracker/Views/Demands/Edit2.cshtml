@@ -1,0 +1,103 @@
+﻿@model ProjectTracker.Database.Concrete.Demand
+
+@{
+    ViewData["Title"] = "Edit2";
+}
+
+<h1>Talepler</h1>
+
+<h4>Düzenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit2">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" hidden="hidden">
+                @Html.DisplayName("Proje")
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Kullanıcı")
+                <select asp-for="User.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="User.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Firma İlgili")
+                <input asp-for="CompanyAbout" class="form-control" />
+                <span asp-validation-for="CompanyAbout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Talep")
+                <input asp-for="Demander" class="form-control" />
+                <span asp-validation-for="Demander" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Yapılan İşlem")
+                <input asp-for="Execution" class="form-control" />
+                <span asp-validation-for="Execution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Oluşturma Tarihi")
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Bitiş Tarihi")
+                <input asp-for="FinishDate" class="form-control" />
+                <span asp-validation-for="FinishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Tamamlandı")
+                @Html.CheckBox("Situation")
+
+            </div>
+            <div class="form-group">
+                @Html.DisplayName("Onay Durumu")
+                <select asp-for="Status" class="form-control" asp-items="ViewBag.statusList"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+           <div class="form-group">
+               <h5>@Html.DisplayName("Bakım Anlaşmasının Kalan Süresi")</h5> @if (@ViewBag.MaintenanceAgreementFinishDate == null)
+                           {<a style="color:red"> Bakım Anlaşması Yok</a>}
+                <a style="color: firebrick;" class=ikinci_yol>Kalan gün : @ViewBag.MaintenanceAgreementFinishDate</a>
+               
+
+            </div>
+            
+            
+            
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-outline-primary" />
+                <a class="btn btn-outline-secondary" asp-action="Index2">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+<style>
+    .ikinci_yol {
+        position: relative;
+        height: 59px;
+        max-width: 400px;
+        overflow: hidden;
+        line-height: 19px;
+        color: firebrick;
+    }
+
+        .ikinci_yol:after {
+            content: "";
+            text-align: right; /* sağa yaslıyoruz */
+            position: absolute; /* absolute - bağımsız değerini veriyoruz */
+            bottom: 0; /* aşağı yaslıyoruz */
+            right: 0; /* sağa yaslıyoruz */
+            width: 36%; /* genişliğin %50'sini alıyoruz */
+            height: 1.2em; /* yüksekliği yazı boyutunuza göre değiştirin */
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 0%); /* soldan transparan bağlayarak sağa doğru beyazlaşan arkaplan*/
+            
+        }
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

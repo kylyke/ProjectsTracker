@@ -1,0 +1,55 @@
+﻿@model ProjectTracker.Database.Concrete.Support
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Destekler</h1>
+
+<h4>Düzenle</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group" hidden="hidden">
+                <label asp-for="ProjectId" class="control-label">Firma</label>
+                <input asp-for="ProjectId" class="form-control" />
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.UserId" class="control-label">İlgili</label>
+                <select asp-for="User.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="User.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Demander" class="control-label">Sorun</label>
+                <input asp-for="Demander" class="form-control" />
+                <span asp-validation-for="Demander" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Execution" class="control-label">Yapılan İşlem</label>
+                <input asp-for="Execution" class="form-control" />
+                <span asp-validation-for="Execution" class="text-danger"></span>
+            </div>
+            <div  class="form-group">
+                <label asp-for="CreateDate" class="control-label">Yapılan İşlem</label>
+                <input asp-for="CreateDate" class="form-control" />
+                <span asp-validation-for="CreateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-outline-primary" />
+                <a class="btn btn-outline-secondary" asp-action="Index">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

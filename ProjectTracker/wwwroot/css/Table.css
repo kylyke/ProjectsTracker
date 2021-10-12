@@ -1,0 +1,26 @@
+﻿.dot {
+    margin-top: 6%;
+    margin-left: 40%;
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot2 {
+    margin-top: 6%;
+    margin-left: 40%;
+    height: 25px;
+    width: 25px;
+    background-color: greenyellow;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.custom {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

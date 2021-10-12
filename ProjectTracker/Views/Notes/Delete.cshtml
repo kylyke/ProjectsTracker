@@ -1,0 +1,33 @@
+﻿@model ProjectTracker.Database.Concrete.Note
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Note</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Talep Notu")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DemandNote)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayName("Oluşturulma Tarihi")
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Sil" class="btn btn-outline-danger" /> |
+        <a class="btn btn-outline-primary"@Html.ActionLink("Vazgeç","Index", "Demands")</a>
+    </form>
+</div>

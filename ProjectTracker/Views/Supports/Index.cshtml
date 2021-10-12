@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProjectTracker.Database.Concrete.Support>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Header{
+
+}
+
+<p><h4>Destekler</h4></p>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Yeni Destek Oluştur</a>
+</p>
+<table id="mytable" class="table table-bordered table-striped" style="display: none;">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Firma")
+            </th>
+            <th>
+                @Html.DisplayName("Sorun")
+            </th>
+            <th>
+                @Html.DisplayName("Yapılan İşlem")
+            </th>
+            <th>
+                @Html.DisplayName("İlgili")
+            </th>
+            <th>
+                @Html.DisplayName("Tarih")
+            </th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                </td>
+                <td title="@Html.DisplayFor(modelItem => item.Demander)" class="custom">
+                    @Html.DisplayFor(modelItem => item.Demander)
+                </td>
+                <td title="@Html.DisplayFor(modelItem => item.Execution)" class="custom">
+                    @Html.DisplayFor(modelItem => item.Execution)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <script src="~/js/jquery.dataTables.min.js"></script>
+
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#mytable').DataTable();
+            $('#mytable').show();
+            
+        });
+    </script>
+
+    <link href="~/css/Table.css" rel="stylesheet" />
+}

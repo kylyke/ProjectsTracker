@@ -1,0 +1,70 @@
+﻿@model ProjectTracker.Database.Concrete.Demand
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Talepler</h1>
+
+<h4>Oluştur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label><a scope="col">Proje Adı</a></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.Projects"></select>
+                <span asp-validation-for="ProjectId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Kullanıcı</a></label>
+                <select asp-for="User.UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+                <span asp-validation-for="User.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Firma İlgili</a></label>
+                <input asp-for="CompanyAbout" class="form-control" />
+                <span asp-validation-for="CompanyAbout" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Talep</a></label>
+                <input asp-for="Demander" class="form-control" />
+                <span asp-validation-for="Demander" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Yapılan İşlem</a></label>
+                <input asp-for="Execution" class="form-control" />
+                <span asp-validation-for="Execution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label><a scope="col">Bitiş Tarihi</a></label>
+                <input asp-for="FinishDate" class="form-control" />
+                <span asp-validation-for="FinishDate" class="text-danger"></span>
+            </div>
+
+            @*<div class="form-group">
+                    <label><a scope="col">Dosya</a></label>
+                    <input asp-for="Data" class="form-control" />
+                    <span asp-validation-for="Data" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                @Html.DisplayName("Tamamlandı")
+                @Html.CheckBox("Situation")
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-outline-primary" />
+                <a class="btn btn-outline-secondary" asp-action="Index">Geri Dön</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

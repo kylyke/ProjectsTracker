@@ -1,0 +1,114 @@
+﻿@using ProjectTracker.Database.Concrete;
+@using Microsoft.AspNetCore.Http;
+@{
+
+    string Role = Context.Session.GetString("Role");
+}
+@model IEnumerable<Demand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section Header{
+}<p><h4>Reddedilen Talepler</h4></p>
+<a class="btn btn-primary" asp-action="Create">Yeni Talep</a>
+<a class="btn btn-primary" asp-action="Index">Onaylananlar</a>
+<a class="btn btn-primary" asp-action="Index2">Onay Bekleyen</a>
+<a class="btn btn-primary" asp-action="TalepRed">Reddedilen</a>
+<a class="btn btn-primary" asp-action="TalepTamamlanan">Tamamlanan</a>
+<p>
+    @*<a class="btn btn-primary" asp-action="Create">Yeni Talep</a>*@
+</p>
+<table id="mytable" class="table table-bordered table-striped" style="display: none;">
+    <thead>
+
+        <tr>
+
+            <th scope="col">Id</th>
+            <th scope="col">Firma Adı</th>
+            <th scope="col">Talep</th>
+            <th scope="col">Yapılan İşlem</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">İlgili</th>
+            <th scope="col">Firma İlgili</th>
+            <th scope="col">Bitiş Tarihi</th>
+            <th scope="col">Notlar</th>
+            <th scope="col">Tamamlandı</th>
+            <th scope="col">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.Project.ProjectName)
+                </td>
+                <td title="@Html.DisplayFor(modelItem => item.Demander)" class="custom">
+                    @Html.DisplayFor(modelItem => item.Demander)
+                </td>
+                <td title="@Html.DisplayFor(modelItem => item.Execution)" class="custom">
+                    @Html.DisplayFor(modelItem => item.Execution)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.User.Name)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.CompanyAbout)
+                </td>
+                <td class="custom">
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                <td>
+                    <div class="btn-group">
+                        <a href="/notes/index/@item.Id" class="btn btn-secondary">Notlar</a>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="@Url.Action("Create", "Notes",new {@Id=item.Id})">Not Ekle</a>
+
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    @if (item.Situation == true)
+                    {<span class="dot2"></span>
+                    }
+                    else
+                    {
+                        <span class="dot"></span>
+                    }
+                </td>
+                <td>
+                    @if (Role == "Admin")
+
+                    {
+                        <a asp-action="Edit2" asp-route-id="@item.Id">Düzenle</a>
+                        <a asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+    <link href="~/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#mytable').DataTable();
+            $('#mytable').show();
+        });
+
+    </script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <link href="~/css/Table.css" rel="stylesheet" />
+
+}

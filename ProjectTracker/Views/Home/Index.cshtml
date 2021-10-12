@@ -1,0 +1,168 @@
+﻿@model IEnumerable<ProjectTracker.Models.ChartModel>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Home Page";
+    string fullname = Context.Session.GetString("fullname");
+    string userId = Context.Session.GetString("Id");
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="jquery-2.1.4.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+</head>
+<body>
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+
+    <div class="loader-wrapper">
+        <span class="loader"><span class="loader-inner"></span></span>
+    </div>
+    <script>
+        $(window).on("load", function () {
+            $(".loader-wrapper").fadeOut("slow");
+        });
+    </script>
+</body>
+</html>
+<link href="~/css/Loader.css" rel="stylesheet" />
+
+<div class="text-center">
+    <h2>Aylık Talepler ve Destekler</h2>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<script src="~/js/bootstrap.js"></script>
+
+
+
+<canvas id="chart" width="250" height="50"></canvas>
+
+
+
+<script type="text/javascript">
+//chart
+
+    var chart = document.getElementById("chart").getContext('2d');
+
+    var myChart = new Chart(chart, {
+
+        type: 'line',
+        data: {
+            labels: [@{
+                            foreach (var item in ViewBag.DemandCount as List<ChartModel>)
+                            {
+                                @Html.Raw("'" + item.Day + "',")
+                            }
+                        }],
+
+            datasets: [{
+                label: "Talep",
+                borderColor: 'rgba(255,110,50,1)',
+                backgroundColor: 'rgba(255,110,50, 0.2)',
+                data: [@{
+                            foreach (var item in ViewBag.DemandCount as List<ChartModel>)
+                            {
+                                @Html.Raw("'" + item.Count + "',")
+                            }
+                        }]
+
+            },
+            {
+                label: "Destek",
+                borderColor: 'rgba(65,105,225)',
+                backgroundColor: 'rgba(65,105,225 ,0.2)',
+                data: [@{
+                            foreach (var item in ViewBag.SupportCount as List<ChartModel>)
+                            {
+                                @Html.Raw("'" + item.Count + "',")
+                            }
+                        }]
+            }
+            ]
+        },
+
+        options: {
+            responsive: true,
+            plugins: {
+
+            },
+            interaction: {
+                intersect: false,
+            },
+            scales: {
+                x1: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Gün'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Adet'
+                    },
+
+
+                }
+            }
+        }
+    })
+
+
+</script>
+<div class="list_of_members">
+    <div onclick="javascript:window.location='/Demands/Index2';" class="sales">
+        <div class="icon">
+            <i class="dollar"></i>
+        </div>
+        <div href="/Demands/Index2" class="icon-text">
+            <h3>@ViewBag.bekleyendemandCount</h3>
+            <p>Onay Bekleyen Talep</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div onclick="javascript:window.location='/Demands/TalepTamamlanan';" class="new-users">
+        <div class="icon">
+            <i class="user1"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.bitendemandCount</h3>
+            <p>Tamamlanan Talepler</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div onclick="javascript:window.location='/Supports/Index';" class="orders">
+        <div class="icon">
+            <i class="dollar"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.totalSupport</h3>
+            <p>Toplam Destek</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div onclick="javascript:window.location='/Demands/Index';" class="visitors">
+        <div class="icon">
+            <i class="visit"></i>
+        </div>
+        <div class="icon-text">
+            <h3>@ViewBag.totalDemand</h3>
+            <p>Toplam Talep</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<link href="~/css/style.css" rel="stylesheet" />
+
+
+
+
+
